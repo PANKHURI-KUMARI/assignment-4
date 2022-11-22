@@ -1,0 +1,128 @@
+#include <iostream>
+using namespace std;
+
+//Template
+template <typename A>
+A swap(A x, A y)
+{
+    A t;
+    t = x;
+    x = y;
+    y = t;
+    cout << endl;
+    return x, y;
+    cout << endl;
+};
+
+
+//inheritance, constructor destructor.
+class laptop
+{
+	public:
+		int expense=0;
+		
+};
+
+class battery : public laptop{
+		
+        public:
+            
+            int b,price;
+			battery(int x)
+			{
+				
+                b=x;
+			}
+			void output()
+			{
+				price = b + 1000; 
+				expense+=price;
+				cout<<"Price of replacing battery is :"<<expense<<endl;
+			}
+};
+
+
+class motherBoard:public laptop{
+		
+		private:
+            int m;
+        public:
+            
+			motherBoard(int a)
+			{
+				m = a;
+			}
+            void calculate()
+			{
+				
+				expense = m + 1000;
+				cout<<"Price of motherboard :"<<expense<<endl;
+			}
+            ~motherBoard(){
+                cout<<"destructor invoked";
+            }
+};
+
+class display : public laptop{
+    private:
+        int l;
+    public:
+    display(int a1){
+        l = a1;
+        
+    }
+    void get(){
+       
+        expense = l + 1000;
+        cout<<"display expenses : "<<expense<<endl;
+    }
+};
+
+//Operator Overloading
+class count{
+    private:
+    int c;
+    public:
+    count(){c=0;}
+    count operator ++()
+    {
+        count temp;
+        temp.c=++c;
+        return temp;
+    }
+    count operator--(){
+        count temp;
+        temp.c=c--;
+        return temp;
+    }
+    int get()
+    {
+        return c;
+    }
+};
+	
+int main()
+{
+    
+    battery b(10000);
+    motherBoard m(5000);
+    display d(1000);
+    b.output();
+    m.calculate();
+    d.get();
+
+    cout << swap<int>(4, 5)<<endl;
+
+    count a;
+    cout<<"Initial number of people inside the bank="<<a.get()<<endl;
+    ++a;
+    ++a;
+    ++a;
+    ++a;
+    cout<<"No. of people in the bank="<<a.get()<<endl;
+    --a;
+    --a;
+    --a;
+    cout<<"No. of people in the bank after people left the bank="<<a.get()<<endl;
+
+}
